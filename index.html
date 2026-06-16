@@ -27,6 +27,7 @@
             --primary: #6366f1;
             --secondary: #8b5cf6;
             --accent: #06b6d4;
+            --success: #10b981;
         }
 
         @keyframes gradientShift {
@@ -66,8 +67,7 @@
         }
 
         .logo img {
-            width: 50px;
-            height: 50px;
+            width: 50px; height: 50px;
             border-radius: 14px;
             border: 2px solid rgba(99, 102, 241, 0.5);
             transition: all 0.3s;
@@ -99,12 +99,21 @@
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s;
-            cursor: pointer;
+            position: relative;
         }
 
         .nav-links a:hover { color: #fff; }
 
-        .nav-links a.active { color: #8b5cf6; }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px; left: 0;
+            width: 0; height: 2px;
+            background: linear-gradient(90deg, #6366f1, #8b5cf6);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after { width: 100%; }
 
         .btn-nav {
             background: linear-gradient(135deg, #6366f1, #8b5cf6);
@@ -114,94 +123,12 @@
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s;
-            border: none;
             animation: glow 2s infinite;
         }
 
         .btn-nav:hover {
             transform: translateY(-3px);
             box-shadow: 0 20px 40px rgba(99, 102, 241, 0.4);
-        }
-
-        .settings-btn {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            color: white;
-            width: 45px;
-            height: 45px;
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-left: 10px;
-        }
-
-        .settings-btn:hover {
-            background: rgba(99, 102, 241, 0.2);
-            transform: rotate(90deg);
-        }
-
-        .settings-modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.8);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .settings-modal.active { display: flex; }
-
-        .modal-content {
-            background: rgba(15, 23, 42, 0.95);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(99, 102, 241, 0.3);
-            border-radius: 30px;
-            padding: 40px;
-            max-width: 500px;
-            width: 90%;
-        }
-
-        .modal-content h3 {
-            font-size: 1.8rem;
-            margin-bottom: 30px;
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .setting-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 15px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .setting-item label { font-weight: 500; }
-
-        .setting-item input[type="checkbox"] {
-            width: 24px; height: 24px;
-            accent-color: #6366f1;
-            cursor: pointer;
-        }
-
-        .modal-close {
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 30px;
-            font-size: 1rem;
         }
 
         header {
@@ -325,10 +252,12 @@
             animation: float 6s ease infinite;
         }
 
-        .content-section { display: none; padding: 80px 0; }
-        .content-section.active { display: block; }
+        section { padding: 80px 0; }
 
-        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
 
         .section-badge {
             display: inline-block;
@@ -438,46 +367,114 @@
             display: inline-block;
         }
 
+        .schools-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .school-card {
+            background: rgba(255,255,255,0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 30px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.4s;
+        }
+
+        .school-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        .school-icon { font-size: 4rem; margin-bottom: 20px; }
+        .school-name { font-size: 1.3rem; font-weight: 700; margin-bottom: 10px; }
+        .school-region { color: #8b5cf6; margin-bottom: 15px; }
+
+        .school-status {
+            background: rgba(16, 185, 129, 0.2);
+            color: #34d399;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-block;
+        }
+
+        /* РУКОВОДСТВО - новый дизайн */
+        .leadership-section {
+            margin-bottom: 40px;
+        }
+
+        .leadership-section h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #a5b4fc;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .leadership-section h3 i {
+            color: #8b5cf6;
+        }
+
         .team-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 25px;
+            gap: 20px;
+        }
+
+        .team-grid.two-col {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .team-grid.one-col {
+            grid-template-columns: 1fr;
         }
 
         .team-card {
             background: rgba(255,255,255,0.03);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 30px;
-            padding: 40px 25px;
+            border-radius: 24px;
+            padding: 30px 20px;
             text-align: center;
             transition: all 0.4s;
         }
 
         .team-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-8px);
             border-color: rgba(99, 102, 241, 0.3);
+            background: rgba(99, 102, 241, 0.08);
         }
 
         .team-avatar {
-            width: 100px; height: 100px;
+            width: 80px; height: 80px;
             background: linear-gradient(135deg, #6366f1, #8b5cf6);
-            border-radius: 30px;
-            margin: 0 auto 25px;
+            border-radius: 24px;
+            margin: 0 auto 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 700;
             border: 3px solid rgba(255,255,255,0.1);
         }
 
-        .team-name { font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; }
-        .team-name a { color: white; text-decoration: none; transition: color 0.3s; }
-        .team-name a:hover { color: #8b5cf6; }
-        .team-role { color: #8b5cf6; font-weight: 500; margin-bottom: 15px; }
-        .team-vk a { color: rgba(255,255,255,0.5); text-decoration: none; transition: all 0.3s; font-size: 0.9rem; }
-        .team-vk a:hover { color: #0077ff; }
+        .team-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .team-role {
+            color: #8b5cf6;
+            font-weight: 500;
+            font-size: 0.85rem;
+        }
 
         .quick-form-section {
             background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.05));
@@ -576,6 +573,7 @@
 
         .footer-logo { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; }
         .footer-logo img { width: 40px; height: 40px; border-radius: 10px; }
+        .footer-logo span { font-size: 1.3rem; font-weight: 700; }
         .footer-desc { color: rgba(255,255,255,0.5); margin-bottom: 25px; }
 
         .social-links { display: flex; gap: 15px; }
@@ -597,7 +595,7 @@
         .footer-links h4 { margin-bottom: 25px; font-size: 1.1rem; }
         .footer-links ul { list-style: none; }
         .footer-links li { margin-bottom: 15px; }
-        .footer-links a { color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.3s; cursor: pointer; }
+        .footer-links a { color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.3s; }
         .footer-links a:hover { color: white; }
 
         .footer-bottom {
@@ -625,9 +623,11 @@
             .hero-title { font-size: 3rem; }
             .grid-4 { grid-template-columns: 1fr; }
             .systems-grid { grid-template-columns: repeat(2, 1fr); }
+            .schools-grid { grid-template-columns: 1fr; }
             .team-grid { grid-template-columns: 1fr; }
             .quick-form { grid-template-columns: 1fr; }
             .footer-grid { grid-template-columns: 1fr; }
+            .section-title { font-size: 2.5rem; }
         }
     </style>
 </head>
@@ -639,19 +639,14 @@
                     <img src="ava_minimalizm.jpg" alt="МРОО ОБРГОР">
                     <span>МРОО ОБРГОР</span>
                 </div>
-                <div class="nav-links" id="navLinks">
-                    <a data-section="home" class="active">Главная</a>
-                    <a data-section="features">Преимущества</a>
-                    <a data-section="systems">Системы</a>
-                    <a data-section="team">Команда</a>
-                    <a data-section="quick">Быстрая заявка</a>
-                    <a data-section="docs">Документы</a>
-                    <a data-section="contact">Контакты</a>
+                <div class="nav-links">
+                    <a href="#features">Преимущества</a>
+                    <a href="#systems">Системы</a>
+                    <a href="#schools">Школы</a>
+                    <a href="#team">Руководство</a>
+                    <a href="#contact">Контакты</a>
                 </div>
-                <div style="display: flex; align-items: center;">
-                    <a href="form.html" class="btn-nav"><i class="fas fa-pen"></i> Подать заявку</a>
-                    <div class="settings-btn" onclick="openSettings()"><i class="fas fa-cog"></i></div>
-                </div>
+                <a href="form.html" class="btn-nav"><i class="fas fa-pen"></i> Подать заявку</a>
             </div>
             
             <div class="hero-grid">
@@ -661,7 +656,7 @@
                     <p class="hero-desc">МРОО «ОБРГОР» — подключаем школы к современным цифровым системам. Быстро, надёжно, с поддержкой 24/7.</p>
                     <div class="hero-buttons">
                         <a href="form.html" class="btn-primary"><i class="fas fa-rocket"></i> Подключить школу</a>
-                        <button class="btn-secondary" onclick="switchSection('quick')"><i class="fas fa-bolt"></i> Быстрая заявка</button>
+                        <a href="#quick-form" class="btn-secondary"><i class="fas fa-bolt"></i> Быстрая заявка</a>
                     </div>
                     <div class="hero-stats">
                         <div class="hero-stat">
@@ -686,41 +681,25 @@
     </header>
 
     <main class="container">
-        <!-- Главная -->
-        <div id="home" class="content-section active">
-            <div style="text-align: center; padding: 60px 0;">
-                <h2 class="section-title">Добро пожаловать в МРОО «ОБРГОР»</h2>
-                <p class="section-desc" style="margin-bottom: 40px;">Молодёжная районная общественная организация «Образовательное развитие городского округа»</p>
-                <div class="grid-4" style="margin-top: 40px;">
-                    <div class="feature-card"><div class="feature-icon"><i class="fas fa-rocket"></i></div><h3>Быстрый старт</h3><p>Подключение за 24 часа</p></div>
-                    <div class="feature-card"><div class="feature-icon"><i class="fas fa-headset"></i></div><h3>Поддержка 24/7</h3><p>Всегда на связи</p></div>
-                    <div class="feature-card"><div class="feature-icon"><i class="fas fa-shield-alt"></i></div><h3>Безопасность</h3><p>Защита данных по 152-ФЗ</p></div>
-                    <div class="feature-card"><div class="feature-icon"><i class="fas fa-graduation-cap"></i></div><h3>Обучение</h3><p>Бесплатные вебинары</p></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Преимущества -->
-        <div id="features" class="content-section">
+        <section id="features">
             <div class="section-header">
                 <span class="section-badge"><i class="fas fa-star"></i> Почему мы</span>
                 <h2 class="section-title">Почему выбирают нас</h2>
                 <p class="section-desc">Создаём возможности для профессионального роста в образовании</p>
             </div>
             <div class="grid-4">
-                <div class="feature-card"><div class="feature-icon"><i class="fas fa-bullseye"></i></div><h3>Миссия</h3><p>Развитие молодёжных инициатив в сфере образования</p></div>
-                <div class="feature-card"><div class="feature-icon"><i class="fas fa-users"></i></div><h3>Команда</h3><p>Профессионалы с опытом в образовательной сфере</p></div>
-                <div class="feature-card"><div class="feature-icon"><i class="fas fa-chart-line"></i></div><h3>Развитие</h3><p>Обучение и повышение квалификации</p></div>
-                <div class="feature-card"><div class="feature-icon"><i class="fas fa-microchip"></i></div><h3>Инновации</h3><p>Современные технологии в образовании</p></div>
+                <div class="feature-card"><div class="feature-icon"><i class="fas fa-bullseye"></i></div><h3>Миссия</h3><p>Развитие молодёжных инициатив в сфере образования и поддержка профессионального роста</p></div>
+                <div class="feature-card"><div class="feature-icon"><i class="fas fa-users"></i></div><h3>Команда</h3><p>Профессионалы с опытом работы в образовательной сфере, готовые помочь</p></div>
+                <div class="feature-card"><div class="feature-icon"><i class="fas fa-chart-line"></i></div><h3>Развитие</h3><p>Обучение, повышение квалификации и влияние на развитие образования</p></div>
+                <div class="feature-card"><div class="feature-icon"><i class="fas fa-microchip"></i></div><h3>Инновации</h3><p>Современные подходы и технологии в образовательном процессе</p></div>
             </div>
-        </div>
+        </section>
 
-        <!-- Системы -->
-        <div id="systems" class="content-section">
+        <section id="systems">
             <div class="section-header">
                 <span class="section-badge"><i class="fas fa-cloud"></i> Технологии</span>
                 <h2 class="section-title">Подключаемые системы</h2>
-                <p class="section-desc">Современные цифровые платформы</p>
+                <p class="section-desc">Современные цифровые платформы для образования</p>
             </div>
             <div class="systems-grid">
                 <div class="system-card"><i class="fas fa-book"></i><h4>АИС ЭлЖур</h4><span class="badge-soon">скоро</span></div>
@@ -731,45 +710,40 @@
                 <div class="system-card"><i class="fas fa-dove"></i><h4>Журавль</h4></div>
                 <div class="system-card"><i class="fas fa-user-tie"></i><h4>Руководство</h4></div>
             </div>
-        </div>
+        </section>
 
-        <!-- Команда -->
-        <div id="team" class="content-section">
+        <section id="schools">
             <div class="section-header">
-                <span class="section-badge"><i class="fas fa-users"></i> Руководство</span>
-                <h2 class="section-title">Наша команда</h2>
-                <p class="section-desc">Профессионалы, которые ведут нас к успеху</p>
+                <span class="section-badge"><i class="fas fa-school"></i> Наши школы</span>
+                <h2 class="section-title">Уже подключены</h2>
+                <p class="section-desc">Школы, которые уже работают с нашими системами</p>
             </div>
-            <div class="team-grid">
-                <div class="team-card">
-                    <div class="team-avatar">РС</div>
-                    <div class="team-name"><a href="https://vk.com/s.ruduk" target="_blank">Рудых Сергей Александрович</a></div>
-                    <div class="team-role">Председатель</div>
-                    <div class="team-vk"><a href="https://vk.com/s.ruduk" target="_blank"><i class="fab fa-vk"></i> @s.ruduk</a></div>
+            <div class="schools-grid">
+                <div class="school-card">
+                    <div class="school-icon">🏫</div>
+                    <div class="school-name">МБОУ СОШ №42</div>
+                    <div class="school-region"><i class="fas fa-map-marker-alt"></i> Курск</div>
+                    <p style="color: rgba(255,255,255,0.5); margin-bottom: 20px;">Директор: Иванова М.С.</p>
+                    <span class="school-status"><i class="fas fa-check-circle"></i> Подключена</span>
                 </div>
-                <div class="team-card">
-                    <div class="team-avatar">ГС</div>
-                    <div class="team-name"><a href="https://vk.com/id830696127" target="_blank">Глебов Степан Леонидович</a></div>
-                    <div class="team-role">Зам. председателя</div>
-                    <div class="team-vk"><a href="https://vk.com/id830696127" target="_blank"><i class="fab fa-vk"></i> @id830696127</a></div>
+                <div class="school-card">
+                    <div class="school-icon">🏫</div>
+                    <div class="school-name">Гимназия №7</div>
+                    <div class="school-region"><i class="fas fa-map-marker-alt"></i> Москва</div>
+                    <p style="color: rgba(255,255,255,0.5); margin-bottom: 20px;">Директор: Петров А.В.</p>
+                    <span class="school-status"><i class="fas fa-check-circle"></i> Подключена</span>
                 </div>
-                <div class="team-card">
-                    <div class="team-avatar">ГВ</div>
-                    <div class="team-name"><a href="https://vk.com/v0vag0rshk0v2000" target="_blank">Горшков Владимир Александрович</a></div>
-                    <div class="team-role">Помощник председателя</div>
-                    <div class="team-vk"><a href="https://vk.com/v0vag0rshk0v2000" target="_blank"><i class="fab fa-vk"></i> @v0vag0rshk0v2000</a></div>
-                </div>
-                <div class="team-card">
-                    <div class="team-avatar">СЕ</div>
-                    <div class="team-name"><a href="https://vk.com/ruzavinzhenya" target="_blank">Скворцов Егор Андреевич</a></div>
-                    <div class="team-role">Глава администрации</div>
-                    <div class="team-vk"><a href="https://vk.com/ruzavinzhenya" target="_blank"><i class="fab fa-vk"></i> @ruzavinzhenya</a></div>
+                <div class="school-card">
+                    <div class="school-icon">🏫</div>
+                    <div class="school-name">Лицей №15</div>
+                    <div class="school-region"><i class="fas fa-map-marker-alt"></i> Казань</div>
+                    <p style="color: rgba(255,255,255,0.5); margin-bottom: 20px;">Директор: Смирнова Е.Н.</p>
+                    <span class="school-status"><i class="fas fa-check-circle"></i> Подключена</span>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <!-- Быстрая заявка -->
-        <div id="quick" class="content-section">
+        <section id="quick-form">
             <div class="quick-form-section">
                 <div class="section-header">
                     <span class="section-badge"><i class="fas fa-bolt"></i> Быстро</span>
@@ -787,10 +761,125 @@
                     <i class="fas fa-file-alt"></i> Или <a href="form.html" style="color: #8b5cf6;">заполните полную форму</a>
                 </p>
             </div>
-        </div>
+        </section>
 
-        <!-- Документы -->
-        <div id="docs" class="content-section">
+        <!-- ====== НОВОЕ РУКОВОДСТВО ====== -->
+        <section id="team">
+            <div class="section-header">
+                <span class="section-badge"><i class="fas fa-sitemap"></i> Структура</span>
+                <h2 class="section-title">Руководство МРОО «ОБРГОР»</h2>
+                <p class="section-desc">Структура управления организацией</p>
+            </div>
+
+            <!-- 1. РУКОВОДСТВО ОРГАНИЗАЦИИ -->
+            <div class="leadership-section">
+                <h3><i class="fas fa-crown"></i> 1. Руководство организации</h3>
+                <div class="team-grid">
+                    <div class="team-card">
+                        <div class="team-avatar">РС</div>
+                        <div class="team-name">Рудых Сергей Александрович</div>
+                        <div class="team-role">Председатель</div>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-avatar">ГС</div>
+                        <div class="team-name">Глебов Степан Леонидович</div>
+                        <div class="team-role">Заместитель председателя</div>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-avatar">ЦК</div>
+                        <div class="team-name">Цихончик Кирилл Сергеевич</div>
+                        <div class="team-role">Помощник председателя</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. РУКОВОДСТВО (Административный орган) -->
+            <div class="leadership-section">
+                <h3><i class="fas fa-building"></i> 2. Руководство (Административный орган)</h3>
+                <div class="team-grid two-col">
+                    <div class="team-card">
+                        <div class="team-avatar">СЕ</div>
+                        <div class="team-name">Скворцов Егор Андреевич</div>
+                        <div class="team-role">Руководитель</div>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-avatar">МН</div>
+                        <div class="team-name">Морозов Никита Олегович</div>
+                        <div class="team-role">Заместитель руководителя</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. РУКОВОДИТЕЛЬ ПО ДЕЛОПРОИЗВОДСТВУ -->
+            <div class="leadership-section">
+                <h3><i class="fas fa-file-alt"></i> 3. Руководитель по делопроизводству</h3>
+                <div class="team-grid one-col">
+                    <div class="team-card">
+                        <div class="team-avatar">МК</div>
+                        <div class="team-name">Маркина Ксения Сергеевна</div>
+                        <div class="team-role">Руководитель по делопроизводству</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. РУКОВОДИТЕЛЬ ИТ -->
+            <div class="leadership-section">
+                <h3><i class="fas fa-laptop-code"></i> 4. Руководитель ИТ, разработчик, пресс-служба</h3>
+                <div class="team-grid one-col">
+                    <div class="team-card">
+                        <div class="team-avatar">ГД</div>
+                        <div class="team-name">Гордеев Денис Олегович</div>
+                        <div class="team-role">Руководитель ИТ, разработчик, руководитель пресс-службы и креативных идей и проектов</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. РУКОВОДИТЕЛЬ ОТДЕЛА КАДРОВ ПО ШКОЛАМ -->
+            <div class="leadership-section">
+                <h3><i class="fas fa-user-graduate"></i> 5. Руководитель отдела кадров по школам</h3>
+                <div class="team-grid one-col">
+                    <div class="team-card">
+                        <div class="team-avatar">ЦК</div>
+                        <div class="team-name">Цихончик Кирилл Сергеевич</div>
+                        <div class="team-role">Руководитель отдела кадров по школам</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. РУКОВОДИТЕЛЬ СЛУЖБЫ БЕЗОПАСНОСТИ -->
+            <div class="leadership-section">
+                <h3><i class="fas fa-shield-alt"></i> 6. Руководитель службы безопасности</h3>
+                <div class="team-grid one-col">
+                    <div class="team-card">
+                        <div class="team-avatar">КИ</div>
+                        <div class="team-name">Каримов Ильшат Айратович</div>
+                        <div class="team-role">Руководитель Совбеза МРОО «ОБРГОР»</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7. ПРЕДСЕДАТЕЛЬ ИЗБИРАТЕЛЬНОЙ КОМИССИИ -->
+            <div class="leadership-section">
+                <h3><i class="fas fa-vote-yea"></i> 7. Председатель избирательной комиссии</h3>
+                <div class="team-grid one-col">
+                    <div class="team-card">
+                        <div class="team-avatar">СЕ</div>
+                        <div class="team-name">Скворцов Егор Андреевич</div>
+                        <div class="team-role">Председатель избирательной комиссии МРОО «ОБРГОР»</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="cta-section">
+                <h2>Готовы стать частью МРОО «ОБРГОР»?</h2>
+                <p>Подключите вашу школу к нашим системам уже сегодня</p>
+                <a href="form.html" class="btn-primary"><i class="fas fa-paper-plane"></i> Подать заявку сейчас</a>
+            </div>
+        </section>
+
+        <section>
             <div class="section-header">
                 <span class="section-badge"><i class="fas fa-file-alt"></i> Документы</span>
                 <h2 class="section-title">Официальные документы</h2>
@@ -810,53 +899,16 @@
                     <div class="doc-info"><h4>Соглашение</h4><span>DOCX • Скачать</span></div>
                 </a>
             </div>
-        </div>
-
-        <!-- Контакты -->
-        <div id="contact" class="content-section">
-            <div class="section-header">
-                <span class="section-badge"><i class="fas fa-address-card"></i> Связь</span>
-                <h2 class="section-title">Контакты</h2>
-                <p class="section-desc">Свяжитесь с нами любым удобным способом</p>
-            </div>
-            <div class="cta-section" style="animation: none; background: rgba(99, 102, 241, 0.2);">
-                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; text-align: center;">
-                    <div>
-                        <i class="fas fa-phone" style="font-size: 3rem; margin-bottom: 20px; color: #8b5cf6;"></i>
-                        <h3 style="font-size: 1.5rem; margin-bottom: 10px;">Телефон</h3>
-                        <p style="font-size: 1.2rem;">+7 (983) 242-03-49</p>
-                    </div>
-                    <div>
-                        <i class="fas fa-envelope" style="font-size: 3rem; margin-bottom: 20px; color: #8b5cf6;"></i>
-                        <h3 style="font-size: 1.5rem; margin-bottom: 10px;">Email</h3>
-                        <p style="font-size: 1.2rem;">SergeyRudukh@yandex.ru</p>
-                    </div>
-                    <div>
-                        <i class="fab fa-telegram" style="font-size: 3rem; margin-bottom: 20px; color: #8b5cf6;"></i>
-                        <h3 style="font-size: 1.5rem; margin-bottom: 10px;">Telegram</h3>
-                        <p style="font-size: 1.2rem;">@mooOPOO_bot</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- CTA -->
-        <section>
-            <div class="cta-section">
-                <h2>Готовы стать частью МРОО «ОБРГОР»?</h2>
-                <p>Подключите вашу школу к нашим системам уже сегодня</p>
-                <a href="form.html" class="btn-primary"><i class="fas fa-paper-plane"></i> Подать заявку сейчас</a>
-            </div>
         </section>
     </main>
 
-    <footer>
+    <footer id="contact">
         <div class="container">
             <div class="footer-grid">
                 <div>
                     <div class="footer-logo">
                         <img src="ava_minimalizm.jpg" alt="МРОО ОБРГОР">
-                        <span style="font-weight: 700; font-size: 1.3rem;">МРОО ОБРГОР</span>
+                        <span>МРОО ОБРГОР</span>
                     </div>
                     <p class="footer-desc">Молодёжная районная общественная организация «ОБРГОР» — подключаем школы к современным цифровым системам.</p>
                     <div class="social-links">
@@ -866,7 +918,12 @@
                 </div>
                 <div class="footer-links">
                     <h4>Навигация</h4>
-                    <ul id="footerNav"></ul>
+                    <ul>
+                        <li><a href="#features">Преимущества</a></li>
+                        <li><a href="#systems">Системы</a></li>
+                        <li><a href="#schools">Школы</a></li>
+                        <li><a href="#team">Руководство</a></li>
+                    </ul>
                 </div>
                 <div class="footer-links">
                     <h4>Документы</h4>
@@ -876,7 +933,14 @@
                         <li><a href="Соглашение об информационном взаимодействии МРОО ОБРГОР.docx" download>Соглашение</a></li>
                     </ul>
                 </div>
-                <div class="footer-links" id="footerContacts"></div>
+                <div class="footer-links">
+                    <h4>Контакты</h4>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> +7 (983) 242-03-49</li>
+                        <li><i class="fas fa-envelope"></i> SergeyRudukh@yandex.ru</li>
+                        <li><i class="fab fa-telegram"></i> @mooOPOO_bot</li>
+                    </ul>
+                </div>
             </div>
             <div class="footer-bottom">
                 <p>© 2026 МРОО «ОБРГОР». Все права защищены.</p>
@@ -884,85 +948,8 @@
         </div>
     </footer>
 
-    <div class="settings-modal" id="settingsModal">
-        <div class="modal-content">
-            <h3><i class="fas fa-sliders-h"></i> Настройки навигации</h3>
-            <div id="settingsList"></div>
-            <button class="modal-close" onclick="closeSettings()">Сохранить и закрыть</button>
-        </div>
-    </div>
-
     <script>
         (function() { emailjs.init("tQY2KQxPwNdF7WrT_"); })();
-
-        let navSettings = { home: true, features: true, systems: true, team: true, quick: true, docs: true, contact: true };
-        const sectionNames = { home: 'Главная', features: 'Преимущества', systems: 'Системы', team: 'Команда', quick: 'Быстрая заявка', docs: 'Документы', contact: 'Контакты' };
-
-        if (localStorage.getItem('navSettings')) { navSettings = JSON.parse(localStorage.getItem('navSettings')); }
-
-        function updateNavigation() {
-            const navLinks = document.getElementById('navLinks');
-            const links = navLinks.querySelectorAll('a');
-            links.forEach(link => {
-                const section = link.getAttribute('data-section');
-                link.style.display = navSettings[section] === false ? 'none' : 'inline';
-            });
-
-            const footerNav = document.getElementById('footerNav');
-            footerNav.innerHTML = '';
-            for (let key in navSettings) {
-                if (navSettings[key] && key !== 'contact') {
-                    const li = document.createElement('li');
-                    li.innerHTML = `<a onclick="switchSection('${key}')">${sectionNames[key]}</a>`;
-                    footerNav.appendChild(li);
-                }
-            }
-
-            const footerContacts = document.getElementById('footerContacts');
-            footerContacts.innerHTML = navSettings.contact ? `
-                <h4>Контакты</h4>
-                <ul>
-                    <li><i class="fas fa-phone"></i> +7 (983) 242-03-49</li>
-                    <li><i class="fas fa-envelope"></i> SergeyRudukh@yandex.ru</li>
-                    <li><i class="fab fa-telegram"></i> @mooOPOO_bot</li>
-                </ul>` : '';
-
-            localStorage.setItem('navSettings', JSON.stringify(navSettings));
-        }
-
-        function openSettings() {
-            const modal = document.getElementById('settingsModal');
-            const list = document.getElementById('settingsList');
-            list.innerHTML = '';
-            for (let key in navSettings) {
-                const div = document.createElement('div');
-                div.className = 'setting-item';
-                div.innerHTML = `<label>${sectionNames[key]}</label><input type="checkbox" ${navSettings[key] ? 'checked' : ''} data-section="${key}">`;
-                list.appendChild(div);
-            }
-            modal.classList.add('active');
-        }
-
-        function closeSettings() {
-            const modal = document.getElementById('settingsModal');
-            const checkboxes = modal.querySelectorAll('input[type="checkbox"]');
-            checkboxes.forEach(cb => { navSettings[cb.getAttribute('data-section')] = cb.checked; });
-            updateNavigation();
-            modal.classList.remove('active');
-        }
-
-        function switchSection(sectionId) {
-            document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
-            document.getElementById(sectionId).classList.add('active');
-            document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-            const navLink = document.querySelector(`.nav-links a[data-section="${sectionId}"]`);
-            if (navLink) navLink.classList.add('active');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', function() { switchSection(this.getAttribute('data-section')); });
-        });
 
         const counters = document.querySelectorAll('.counter');
         const observer = new IntersectionObserver((entries) => {
@@ -1002,16 +989,11 @@
                     message: `🏫 БЫСТРАЯ ЗАЯВКА\n\n📌 Школа: ${name}\n📍 Город: ${city}\n📞 Телефон: ${phone}\n📅 ${new Date().toLocaleString('ru-RU')}`
                 });
                 msg.textContent = '✅ Заявка отправлена! Скоро свяжемся.'; msg.className = 'form-message success';
-                document.getElementById('quickName').value = '';
-                document.getElementById('quickCity').value = '';
-                document.getElementById('quickPhone').value = '';
+                document.getElementById('quickName').value = ''; document.getElementById('quickCity').value = ''; document.getElementById('quickPhone').value = '';
             } catch (e) {
                 msg.textContent = '❌ Ошибка. Позвоните: +7 (983) 242-03-49'; msg.className = 'form-message error';
             } finally { btn.disabled = false; btn.innerHTML = orig; }
         });
-
-        document.getElementById('settingsModal').addEventListener('click', function(e) { if (e.target === this) closeSettings(); });
-        updateNavigation();
     </script>
 </body>
 </html>
